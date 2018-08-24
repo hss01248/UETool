@@ -5,11 +5,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.PixelFormat;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.*;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -35,6 +37,9 @@ public class UETMenu extends LinearLayout {
     private WindowManager.LayoutParams params = new WindowManager.LayoutParams();
     private int touchSlop;
     private int y;
+
+
+
 
     public UETMenu(final Context context, int y) {
         super(context);

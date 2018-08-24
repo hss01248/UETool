@@ -6,14 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
+import com.zy.logcat.LogcatDialogUtil;
+import me.ele.uetool.base.Application;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import me.ele.uetool.base.Application;
 
 public class UETool {
 
@@ -41,6 +42,57 @@ public class UETool {
             }
         }
         return instance;
+    }
+
+    public static void init(android.app.Application application){
+        LogcatDialogUtil.init(application);
+        application.registerActivityLifecycleCallbacks(new android.app.Application.ActivityLifecycleCallbacks() {
+
+            private int visibleActivityCount;
+            private int uetoolDismissY = 10;
+
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                visibleActivityCount++;
+                if (visibleActivityCount == 1 && uetoolDismissY >= 0) {
+                    UETool.showUETMenu(uetoolDismissY);
+                }
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                visibleActivityCount--;
+                if (visibleActivityCount == 0) {
+                    uetoolDismissY = UETool.dismissUETMenu();
+                }
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+
     }
 
     public static void putFilterClass(Class clazz) {
@@ -133,4 +185,8 @@ public class UETool {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+
+
+
 }

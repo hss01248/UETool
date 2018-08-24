@@ -1,5 +1,7 @@
 package me.ele.uetool;
 
+import android.app.Application;
+
 public class UETool {
 
     public static void putFilterClass(Class clazz) {
@@ -25,4 +27,6 @@ public class UETool {
     public static int dismissUETMenu() {
         return -1;
     }
+
+    public static void init(Application application){}
 }
