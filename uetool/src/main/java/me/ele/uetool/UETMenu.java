@@ -10,16 +10,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.PixelFormat;
 import android.os.Build;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import com.zy.logcat.LogcatDialogUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -70,6 +66,14 @@ public class UETMenu extends LinearLayout {
                     @Override
                     public void onClick(View v) {
                         open(TransparentActivity.Type.TYPE_SHOW_GRIDDING);
+                    }
+                }));
+
+        subMenus.add(new UETSubMenu.SubMenu(resources.getString(R.string.uet_logcat), R.drawable.logcat,
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LogcatDialogUtil.show(v.getContext(),v.getContext().getPackageName());
                     }
                 }));
 

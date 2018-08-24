@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
 
+import com.zy.logcat.LogcatDialogUtil;
 import me.ele.uetool.UETool;
 
 public class AppContext extends Application {
@@ -19,6 +20,7 @@ public class AppContext extends Application {
 
         UETool.putFilterClass(FilterOutView.class);
         UETool.putAttrsProviderClass(CustomAttribution.class);
+        LogcatDialogUtil.init(this);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
 

@@ -18,6 +18,10 @@ dependencies {
     compile project(':uetool-base')
     //  compile "me.ele:uetool-base:${versions.release}"
     compile "com.android.support:recyclerview-v7:${versions.supportLibrary}"
+
+    compile ('com.github.hss01248:LogCatDialog:1.0.4'){
+        exclude group: 'com.android.support'
+    }
 }
 
 publish {
